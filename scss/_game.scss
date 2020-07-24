@@ -1,0 +1,137 @@
+.game {
+    width: 75%;
+    background-color: $color-secondary;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map {
+    background-color: $color-primary;
+    width: 40vw;
+    height: 40vw;
+
+    display: grid;
+    grid-template-rows: repeat(8, [y] 1fr);
+    grid-template-columns: repeat(8, [x] 1fr);
+}
+
+.cell {
+    &:nth-of-type(-2n+8), 
+    &:nth-of-type(8) ~ &:nth-of-type(-2n+15), 
+    &:nth-of-type(16) ~ &:nth-of-type(-2n+24),
+    &:nth-of-type(24) ~ &:nth-of-type(-2n+31),
+    &:nth-of-type(32) ~ &:nth-of-type(-2n+40),
+    &:nth-of-type(40) ~ &:nth-of-type(-2n+47),
+    &:nth-of-type(48) ~ &:nth-of-type(-2n+56),
+    &:nth-of-type(56) ~ &:nth-of-type(-2n+63) {
+        background-color: $color-primary-light;
+    }
+}
+
+// PLAYER
+
+.pawn {
+    background-image: url(../img/pawn.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.knight {
+    background-image: url(../img/knight.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rook {
+    background-image: url(../img/rook.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bishop {
+    background-image: url(../img/bishop.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.king {
+    background-image: url(../img/king.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.queen {
+    background-image: url(../img/queen.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// COMPUTER
+
+.pawn-c {
+    background-image: url(../img/pawn-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.knight-c {
+    background-image: url(../img/knight-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rook-c {
+    background-image: url(../img/rook-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bishop-c {
+    background-image: url(../img/bishop-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.king-c {
+    background-image: url(../img/king-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.queen-c {
+    background-image: url(../img/queen-c.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// OTHER
+
+.green {
+    background-color: limegreen !important;
+}
+
+.red {
+    background-color: orangered !important;
+}
+
+.active {
+    background-color: $color-primary-dark !important;
+}
+
+.show {
+    display: block !important;
+}

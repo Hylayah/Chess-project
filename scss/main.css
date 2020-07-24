@@ -1,0 +1,186 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  color: #3C99DC;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.block {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+  display: none;
+}
+
+.menu {
+  width: 25%;
+}
+
+.game {
+  width: 75%;
+  background-color: #E7F9FF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.map {
+  background-color: #66D3FA;
+  width: 40vw;
+  height: 40vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: ([y] 1fr)[8];
+      grid-template-rows: repeat(8, [y] 1fr);
+  -ms-grid-columns: ([x] 1fr)[8];
+      grid-template-columns: repeat(8, [x] 1fr);
+}
+
+.cell:nth-of-type(-2n+8),
+.cell:nth-of-type(8) ~ .cell:nth-of-type(-2n+15),
+.cell:nth-of-type(16) ~ .cell:nth-of-type(-2n+24),
+.cell:nth-of-type(24) ~ .cell:nth-of-type(-2n+31),
+.cell:nth-of-type(32) ~ .cell:nth-of-type(-2n+40),
+.cell:nth-of-type(40) ~ .cell:nth-of-type(-2n+47),
+.cell:nth-of-type(48) ~ .cell:nth-of-type(-2n+56),
+.cell:nth-of-type(56) ~ .cell:nth-of-type(-2n+63) {
+  background-color: #D5F3FE;
+}
+
+.pawn {
+  background-image: url(../img/pawn.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.knight {
+  background-image: url(../img/knight.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.rook {
+  background-image: url(../img/rook.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bishop {
+  background-image: url(../img/bishop.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.king {
+  background-image: url(../img/king.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.queen {
+  background-image: url(../img/queen.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pawn-c {
+  background-image: url(../img/pawn-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.knight-c {
+  background-image: url(../img/knight-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.rook-c {
+  background-image: url(../img/rook-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bishop-c {
+  background-image: url(../img/bishop-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.king-c {
+  background-image: url(../img/king-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.queen-c {
+  background-image: url(../img/queen-c.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.green {
+  background-color: limegreen !important;
+}
+
+.red {
+  background-color: orangered !important;
+}
+
+.active {
+  background-color: #3C99DC !important;
+}
+
+.show {
+  display: block !important;
+}
+/*# sourceMappingURL=main.css.map */
