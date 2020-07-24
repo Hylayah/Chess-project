@@ -113,15 +113,15 @@ function moves_ai(a, b, c, d){
         var bot_right = 'x' + (movex + 1) + 'y' + movey;
         
         if(is_player(bot_right) == 1){
-            document.getElementById(where_id).classList.remove('pawn','rook','bishop','knight','king','queen');
-            document.getElementById(where_id).classList.add('pawn-c');
+            document.getElementById(bot_right).classList.remove('pawn','rook','bishop','knight','king','queen');
+            document.getElementById(bot_right).classList.add('pawn-c');
             d.remove('pawn-c');
-            return where_id;
+            return bot_right;
         } else if(is_player(bot_left) == 1){
-            document.getElementById(where_id).classList.remove('pawn','rook','bishop','knight','king','queen');
-            document.getElementById(where_id).classList.add('pawn-c');
+            document.getElementById(bot_left).classList.remove('pawn','rook','bishop','knight','king','queen');
+            document.getElementById(bot_left).classList.add('pawn-c');
             d.remove('pawn-c');
-            return where_id;
+            return bot_left;
         } else if(is_player(where_id) == 1 || is_ai(where_id) == 1){
             return 0;
         } else if(document.getElementById(where_id) != null){

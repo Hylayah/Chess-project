@@ -605,6 +605,11 @@ function moves(a, b, c) {
         }
        
         contain_class(where_id);
+        console.log(movey);
+
+        if(movey==3){
+            contain_class('x' + movex + 'y' + (movey + 1));
+        }
 
         if(document.getElementById(where_id) != null){
             where_id = document.getElementById(where_id);
