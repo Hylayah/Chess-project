@@ -170,10 +170,12 @@ a:visited {
 
 .green {
   background-color: limegreen !important;
+  cursor: pointer;
 }
 
 .red {
   background-color: orangered !important;
+  cursor: pointer;
 }
 
 .active {

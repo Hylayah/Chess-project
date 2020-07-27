@@ -18,7 +18,7 @@ for(var i=1; i<9; i++) {
             eval(str7);
         }
 
-        var str8 = str + ".addEventListener('click', function(){ var classes = this.classList; launch(classes); select(this); })";
+        var str8 = str + ".addEventListener('click', function(){ var classes = this.classList; launch(classes); problem(this); })";
         eval(str8);
     }
 }
@@ -32,7 +32,6 @@ for(var i=1; i<9; i++) {
 function launch(x){
     //console.log(x);
     if(x.length > 3){
-        //console.log(x[1]);
         var current = x[1];
         var pos1 = x[2];
         var pos2 = x[3];
@@ -61,16 +60,19 @@ function select(x){
         } else if(selected[0].classList.contains('queen')){
             select_choose('queen', x);
         } else if(selected[0].classList.contains('king')){
-            select_choose('king', x);
+            if(is_king_ok(x).length == 0){
+                select_choose('king', x);
+            } 
         }
-
-        ai();
+        var after = ai();
+        if(after == 1){
+            return 'problem';
+        }
 
     } else if(x.classList.contains('red')){
         if(selected[0].classList.contains('rook')){
             select_attack('rook-c','rook', x);
         } else if(selected[0].classList.contains('pawn')){
-            console.log('vaaa');
             select_attack('pawn-c','pawn', x);
         } else if(selected[0].classList.contains('bishop')){
             select_attack('bishop-c','bishop', x);
@@ -79,10 +81,11 @@ function select(x){
         } else if(selected[0].classList.contains('queen')){
             select_attack('queen-c','queen', x);
         } else if(selected[0].classList.contains('king')){
-            select_attack('king-c','king', x);
+            if(is_king_ok(x).length == 0){
+                select_attack('king-c','king', x);
+            } 
         }
-
-        ai();
+        var after = ai();
 
     } else {
 
@@ -158,6 +161,34 @@ function contain_class(a){
             selected_green.push(where);
             where.classList.add('green');
             return 1;
+        }    
+    }
+}
+
+function king_contain_class(a){
+    if(document.getElementById(a) != null){
+        var where = document.getElementById(a);
+        if(where.classList.contains('pawn') || where.classList.contains('knight') || where.classList.contains('king') || where.classList.contains('queen') || where.classList.contains('rook') || where.classList.contains('bishop')){
+            return 0;
+        } else if(where.classList.contains('pawn-c') || where.classList.contains('knight-c') || where.classList.contains('king-c') || where.classList.contains('queen-c') || where.classList.contains('rook-c') || where.classList.contains('bishop-c')){
+            if(is_king_ok(where).length == 0){
+                console.log('is it ok');
+                console.log(is_king_ok(where));
+                selected_red.push(where);
+                where.classList.add('red');
+                return 1;
+            } else {
+                return 0;
+            }
+            
+        } else {
+            if(is_king_ok(where).length == 0){
+                selected_green.push(where);
+                where.classList.add('green');
+                return 1;
+            } else {
+                return 0;
+            }  
         }    
     }
 }
@@ -255,7 +286,7 @@ function king_color(a,b){
             var movey = parseInt(b) + 1;
         } 
         var where_id = 'x' + movex + 'y' + movey;
-        contain_class(where_id);
+        king_contain_class(where_id);       
         
     } 
 }
@@ -685,4 +716,16 @@ function moves(a, b, c) {
 
         king_color(xpos, ypos);
     }
+}
+
+function problem(x) {
+    var a = select(x);
+    if(a=='problem'){
+        launch(document.getElementsByClassName('king')[0].classList);
+        select(document.getElementsByClassName('king')[0]);
+        if(document.getElementsByClassName('green').length == 0){
+            alert('game over');
+        }
+    }
+    
 }

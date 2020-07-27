@@ -3,7 +3,6 @@ var turn = 0
 function ai(){
     turn++;
     console.log('---------turn ' + turn + ' -----------');
-
     
     if(turn < 5){
         var pawns = document.querySelectorAll('.pawn-c');
@@ -58,17 +57,47 @@ function ai(){
         var sector_number = Math.floor(Math.random() * all[sector].length);
 
         var x = all[sector][sector_number].classList;
+
+        var is_king_in_danger = is_ai_king_ok(document.getElementsByClassName('king-c')[0]);
+        if(is_king_in_danger.length > 0){
+            var x = document.getElementsByClassName('king-c')[0].classList;
+        }
+
         console.log('position ' + x);
         var current = x[1];
         var pos1 = x[2];
         var pos2 = x[3];
 
         var a = moves_ai(current, pos1, pos2, x); 
+
         console.log('moves to ' + a);
 
         while(a==0){
             console.log('cant');
-            var all = [pawns, rooks, knights, bishops, queen, king];
+            var all = [];
+            if(pawns.length > 0){
+                all.push(pawns);
+            }
+            var rooks = document.querySelectorAll('.rook-c');
+            if(rooks.length > 0){
+                all.push(rooks);
+            }
+            var knights = document.querySelectorAll('.knight-c');
+            if(knights.length > 0){
+                all.push(knights);
+            }
+            var bishops = document.querySelectorAll('.bishop-c');
+            if(bishops.length > 0){
+                all.push(bishops);
+            }
+            var queen = document.querySelectorAll('.queen-c');
+            if(queen.length > 0){
+                all.push(queen);
+            }
+            var king = document.querySelectorAll('.king-c');
+            if(king.length > 0){
+                all.push(king);
+            }
             var sector = Math.floor(Math.random() * all.length);
             var sector_number = Math.floor(Math.random() * all[sector].length);
 
@@ -82,6 +111,16 @@ function ai(){
             console.log('moves to ' + a);  
         }
     }
+
+    var check_king = is_king_ok(document.getElementsByClassName('king')[0]);
+    if(check_king.length > 0){
+        alert('You need to move the king');
+        return 1;
+    }
+    
+    // for(var f = 0; f<check_king.length; f++){
+    //     console.log(check_king[f]);
+    // }
 }
 
 // ============ check moves
@@ -294,6 +333,8 @@ function moves_ai(a, b, c, d){
         
     } else if(a == 'king-c') {
 
+        
+
         var locked = bishop_locked(xpos, ypos);
 
         var bot_right_locked = locked[0];
@@ -337,8 +378,38 @@ function moves_ai(a, b, c, d){
         if(direction.length==0){
             return 0;
         }
+
+        var is_king_in_danger = is_ai_king_ok(document.getElementsByClassName('king-c')[0]);
+        if(is_king_in_danger.length > 0){
+            for(var g = 0; g < is_king_in_danger.length; g++){
+                if(is_king_in_danger[g][2] == 'long' || is_king_in_danger[g][2] == 'horse'){
+                    var index = direction.indexOf(is_king_in_danger[g][1]);
+                    direction.splice(index, 1);
+                }
+            }
+        }
+        console.log('direction ' + direction);
+
         var direction_chosen = direction[Math.floor(Math.random() * direction.length)];
+        console.log('direction chose ' + direction_chosen);
+
         var move_to = king_range(xpos, ypos, direction_chosen);
+
+        while(move_to == 0){
+            var index1 = direction.indexOf(direction_chosen);
+            direction.splice(index1, 1);
+            console.log('direction ' + direction);
+            var direction_chosen = direction[Math.floor(Math.random() * direction.length)];
+            console.log('direction chose ' + direction_chosen);
+            var move_to = king_range(xpos, ypos, direction_chosen);
+        }
+
+        try {
+            console.log(move_to[1]);
+        }
+        catch(err) {
+            alert('You won');
+        }
 
         if(move_to[1] == 'player'){
             document.getElementById(move_to[0]).classList.remove('pawn','rook','bishop','knight','king','queen');
@@ -467,6 +538,7 @@ function bishop_locked(xpos, ypos){
     return locked_table;
     
 }
+
 
 // =========== check range of direction
 
@@ -642,9 +714,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='bot-right'){
         var movex = parseInt(a) + 1;
@@ -652,9 +733,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='top-left'){
         var movex = parseInt(a) - 1;
@@ -662,9 +752,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='bot-left'){
         var movex = parseInt(a) - 1;
@@ -672,9 +771,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='top'){
         var movex = parseInt(a);
@@ -682,9 +790,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='bot'){
         var movex = parseInt(a);
@@ -692,9 +809,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='left'){
         var movex = parseInt(a) - 1;
@@ -702,9 +828,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     } else if(c=='right'){
         var movex = parseInt(a) + 1;
@@ -712,9 +847,18 @@ function king_range(a,b,c){
 
         var movexy = 'x' + movex + 'y' + movey;
         if(is_player(movexy)==1){
-            players.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                players.push(movexy);
+            } else {
+                return 0;
+            }
         } else if(is_ai(movexy)==0){
-            direction_range.push(movexy);
+            if(is_ai_king_ok(document.getElementById(movexy)).length == 0){
+                direction_range.push(movexy);
+            } else {
+                return 0;
+            }
+            
         }
     }
 
