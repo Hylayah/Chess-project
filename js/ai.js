@@ -4,7 +4,7 @@ function ai(){
     turn++;
     console.log('---------turn ' + turn + ' -----------');
     
-    if(turn < 5){
+    if(turn < 0){
         var pawns = document.querySelectorAll('.pawn-c');
         var number = Math.floor(Math.random() * pawns.length);
         var x = pawns[number].classList;
@@ -27,6 +27,10 @@ function ai(){
 
 
     } else {
+        var package = {
+            who: null,
+            where: null
+        };
         var all = [];
         var pawns = document.querySelectorAll('.pawn-c');
         if(pawns.length > 0){
@@ -62,18 +66,14 @@ function ai(){
         if(is_king_in_danger.length > 0){
             var x = document.getElementsByClassName('king-c')[0].classList;
         }
-
-        console.log('position ' + x);
+        //what moves
         var current = x[1];
         var pos1 = x[2];
         var pos2 = x[3];
 
         var a = moves_ai(current, pos1, pos2, x); 
 
-        console.log('moves to ' + a);
-
         while(a==0){
-            console.log('cant');
             var all = [];
             if(pawns.length > 0){
                 all.push(pawns);
@@ -102,15 +102,21 @@ function ai(){
             var sector_number = Math.floor(Math.random() * all[sector].length);
 
             var x = all[sector][sector_number].classList;
-
-            console.log('position ' + x);
+            
             var current = x[1];
             var pos1 = x[2];
             var pos2 = x[3];
             a = moves_ai(current, pos1, pos2, x);
-            console.log('moves to ' + a);  
+            
         }
     }
+    console.log('position ' + x);
+    console.log('moves to ' + a);  
+
+    package.who = find_who(current, pos1, pos2, x);
+    package.where = a;
+
+    card(package, turn);
 
     var check_king = is_king_ok(document.getElementsByClassName('king')[0]);
     if(check_king.length > 0){

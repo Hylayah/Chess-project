@@ -31,6 +31,7 @@ for(var i=1; i<9; i++) {
 
 function launch(x){
     //console.log(x);
+    music();
     if(x.length > 3){
         var current = x[1];
         var pos1 = x[2];
@@ -728,4 +729,11 @@ function problem(x) {
         }
     }
     
+}
+
+document.getElementById('new').addEventListener('click', function(){ window.location.reload()})
+
+function music(){
+    let audio = new Audio('../audio/click.mp3');
+    audio.play();
 }

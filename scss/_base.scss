@@ -9,8 +9,7 @@ $color-secondary-dark: #C7BCBC;
 
 
 // FONT VARIABLES
-$font-primary: 'Josefin Sans', sans-serif;
-$font-display: 'Nunito', sans-serif;
+$font-primary:'Libre Franklin', sans-serif;
 
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 75em;   // 1200px
@@ -32,13 +31,21 @@ html {
     box-sizing: border-box;
     scroll-behavior: smooth;
     font-size: 62.5%;
+
+    @media only screen and (max-width: $bp-large) {
+        font-size: 50%;
+    }
+    @media only screen and (max-width: $bp-small) {
+        font-size: 35%;
+    }
 }
 
 body {
     font-family: $font-primary;
-    color:$color-primary-dark;
     font-weight: 400;
     line-height: 1.6;
+    //cursor: default;
+    cursor: url('../img/cursor.png'), default;
 }
 
 a:link,
@@ -51,6 +58,15 @@ a:visited {
     width: 100vw;
     height: 100vh;
     display: flex;
+    position: relative;
+    z-index: 10;
+    color:$color-primary-dark;
+
+    //display: none;
+
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
 }
 .block {
     position: absolute;
@@ -59,3 +75,24 @@ a:visited {
     background-color: red;
     display: none;
 }
+
+#canvas1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    //background-color: cyan;
+    background-image: linear-gradient(to right top, $color-primary-dark, #3fa4e2, #45afe8, #4dbaee, #57c5f3, #68ccf6, #78d4f8, #87dbfb, #9ce1fb, #b0e7fc, #c3edfd, $color-primary-light);
+    z-index: 5;
+}
+
+.none {
+    display: none !important;
+}
+.danger {
+    font-weight: 400 !important; 
+    color: crimson !important;
+}
+
+
