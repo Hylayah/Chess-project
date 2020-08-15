@@ -736,8 +736,16 @@ function problem(x) {
 document.getElementById('new').addEventListener('click', function(){ window.location.reload()});
 
 function music(){
-    let audio = new Audio('../audio/click.mp3');
-    audio.play();
+    // let audio = new Audio('../audio/click.mp3');
+    // audio.play();
+    if (navigator.appName == "Microsoft Internet Explorer" && (navigator.appVersion.indexOf("MSIE 7")!=-1) || (navigator.appVersion.indexOf("MSIE 8")!=-1)) {
+        if (document.all) {
+                document.all.sound.src = "../audio/click.mp3";
+        }
+    } else {
+        var audio = document.getElementById("audio");
+        audio.play();
+    }
 }
 
 document.getElementById('won__btn').addEventListener('click', function(){ window.location.reload()});
