@@ -9,6 +9,23 @@
 </head>
 <body>
     <canvas id="canvas1"></canvas>
+    <div class="won none" id='won'>
+        <div class="won__text" id='won__btn'>You won!!</div>
+    </div>
+    <div class="about none" id='about'>
+        <div class="about__text" id='about__btn'>
+            <h4 class="heading4">About the project</h4>
+            It is my first larger JavaScript project and first game using this technology.<br>
+            I tried to make AI that would work with only JavaScript.<br>
+            I made it without any tutorial so it can't be compared to real bots, but still I'm really proud of the outcome. 
+            <h4 class="heading4">How it works</h4>
+            The AI loops for every pawn searching for the ones that can move.<br>
+            Using function Math.random() it picks one of them, then checks possible XY directions and again chose one of them. <br>
+            Finally using same random function, it chooses how many fields it will move and then will appear in this field.<br>
+            However if the AI finds that choosen pawn can take a players pawn it will prioritize this move over moving in random field.<br>
+            Second exception is when AI finds that its king is in danger, then it will try to move him.
+        </div>
+    </div>
     <div class="container">
         <div class="menu">
             <div class="logo">
@@ -38,7 +55,11 @@
                     <div class="card__where">Direction: <span class='card__span' id='where4'>x4y4</span></div>
                 </div>
             </div>
-            <a class='btn' href="#" id='new'>New Game</a>
+            <div class="buttons">
+                <a class='btn' href="#" id='about__menu'>About</a>
+                <a class='btn' href="#" id='new'>New Game</a>
+            </div>
+            
         </div>
 
         <div class="game">

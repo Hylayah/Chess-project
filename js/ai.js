@@ -414,7 +414,7 @@ function moves_ai(a, b, c, d){
             console.log(move_to[1]);
         }
         catch(err) {
-            alert('You won');
+            document.getElementById('won').classList.remove('none');
         }
 
         if(move_to[1] == 'player'){

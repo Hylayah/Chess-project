@@ -62,12 +62,51 @@ a:visited {
     z-index: 10;
     color:$color-primary-dark;
 
+    overflow-x: hidden;
+
     //display: none;
 
     @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
     }
 }
+
+.won, .about {
+    position: absolute;
+    width:100vw;
+    height: 100vh;
+    background-color: rgba(87, 87, 87, 0.582);
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+        font-size: 10rem;
+        color: #fff;
+        text-shadow: 0px 0px 25px rgba(27, 27, 27, 0.281);
+        background-color: rgba($color-primary, .8);
+        padding: 5rem;
+        border-radius: 20px;
+        transition: all .5s;
+
+        margin: 0 2rem;
+
+        &:hover {
+            background-color: rgba($color-primary-dark, 1);
+        }
+
+        @media only screen and (max-width: $bp-smallest) {
+            font-size: 8rem;
+        }
+    }
+}
+
+.about__text {
+    font-size: 1.8rem;
+}
+
 .block {
     position: absolute;
     width: 100vw;
@@ -93,6 +132,9 @@ a:visited {
 .danger {
     font-weight: 400 !important; 
     color: crimson !important;
+}
+.heading4{
+    font-size: 2.5rem;
 }
 
 

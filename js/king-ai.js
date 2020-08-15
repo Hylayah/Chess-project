@@ -58,7 +58,12 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + parseInt(xpos) + 'y' + (parseInt(ypos) + i);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
-        if( d.contains('rook') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('rook') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy,'top', 'short']);
             } else if(i > 1){
@@ -72,7 +77,12 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + parseInt(xpos) + 'y' + (parseInt(ypos) - i);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
-        if( d.contains('rook') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('rook') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy,'bot', 'short']);
             } else if(i > 1){
@@ -86,7 +96,12 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + (parseInt(xpos) - i) + 'y' + parseInt(ypos);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
-        if( d.contains('rook') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('rook') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy,'left', 'short']);
             } else if(i > 1){
@@ -100,7 +115,12 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + (parseInt(xpos) + i) + 'y' + parseInt(ypos);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
-        if( d.contains('rook') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('rook') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy,'right', 'short']);
             } else if(i > 1){
@@ -117,8 +137,14 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + (parseInt(xpos) + i) + 'y' + (parseInt(ypos) + i);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
+
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
         
-        if( d.contains('bishop') || d.contains('queen') || d.contains('king')){
+        if( d.contains('bishop') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy, 'top-right', 'short']);
             } else if(i > 1){
@@ -140,8 +166,12 @@ function is_ai_king_ok(pionek){
             }
             
         }
-
-        if( d.contains('bishop') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('bishop') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy, 'bot-right', 'short']);
             } else if(i > 1){
@@ -155,8 +185,12 @@ function is_ai_king_ok(pionek){
         var movexy = 'x' + (parseInt(xpos) - i) + 'y' + (parseInt(ypos) + i);
         if(document.getElementById(movexy) == null){ break; }
         var d = document.getElementById(movexy).classList;
-        
-        if( d.contains('bishop') || d.contains('queen') || d.contains('king')){
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('bishop') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy, 'top-left', 'short']);
             } else if(i > 1){
@@ -178,8 +212,13 @@ function is_ai_king_ok(pionek){
             }
             
         }
-
-        if( d.contains('bishop') || d.contains('queen') || d.contains('king')){
+        
+        if(i == 1 && d.contains('king')){
+            if( i == 1){
+                trouble.push([movexy, 'top-right', 'short']);
+            }   
+        }
+        if( d.contains('bishop') || d.contains('queen')){
             if( i == 1){
                 trouble.push([movexy, 'bot-left', 'short']);
             } else if(i > 1){

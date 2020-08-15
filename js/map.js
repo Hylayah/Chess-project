@@ -731,9 +731,20 @@ function problem(x) {
     
 }
 
-document.getElementById('new').addEventListener('click', function(){ window.location.reload()})
+//=================================================================OTHER
+
+document.getElementById('new').addEventListener('click', function(){ window.location.reload()});
 
 function music(){
     let audio = new Audio('../audio/click.mp3');
     audio.play();
 }
+
+document.getElementById('won__btn').addEventListener('click', function(){ window.location.reload()});
+
+document.getElementById('about__btn').addEventListener('click', function(){ 
+    document.getElementById('about').classList.add('none');
+});
+document.getElementById('about__menu').addEventListener('click', function(){ 
+    document.getElementById('about').classList.remove('none');
+});

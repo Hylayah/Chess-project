@@ -48,6 +48,7 @@ a:visited {
   position: relative;
   z-index: 10;
   color: #3C99DC;
+  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 50em) {
@@ -57,6 +58,49 @@ a:visited {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+
+.won, .about {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(87, 87, 87, 0.582);
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.won__text, .about__text {
+  font-size: 10rem;
+  color: #fff;
+  text-shadow: 0px 0px 25px rgba(27, 27, 27, 0.281);
+  background-color: rgba(102, 211, 250, 0.8);
+  padding: 5rem;
+  border-radius: 20px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  margin: 0 2rem;
+}
+
+.won__text:hover, .about__text:hover {
+  background-color: #3c99dc;
+}
+
+@media only screen and (max-width: 30em) {
+  .won__text, .about__text {
+    font-size: 8rem;
+  }
+}
+
+.about__text {
+  font-size: 1.8rem;
 }
 
 .block {
@@ -85,6 +129,10 @@ a:visited {
 .danger {
   font-weight: 400 !important;
   color: crimson !important;
+}
+
+.heading4 {
+  font-size: 2.5rem;
 }
 
 .menu {
@@ -324,24 +372,68 @@ a:visited {
   margin-left: 1rem;
 }
 
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+@media only screen and (max-width: 75em) {
+  .buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 50em) {
+  .buttons {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-left: auto;
+  }
+}
+
 .btn {
-  display: block;
   position: relative;
-  margin: 0 auto;
+  margin: 0 2rem;
   margin-top: 5rem;
   text-align: center;
-  padding: 2rem 3rem;
+  padding: 1.5rem 2rem;
   font-weight: 200;
   text-transform: uppercase;
   background-color: rgba(255, 255, 255, 0.3);
   width: 60%;
   border: 1px solid #3C99DC;
-  font-size: 3rem;
+  font-size: 2.5rem;
   border-radius: 4px;
-  -webkit-transition: all .6s;
-  transition: all .6s;
+  -webkit-transition: all .8s;
+  transition: all .8s;
   overflow: hidden;
   cursor: url("../img/cursor.png"), default;
+}
+
+@media only screen and (max-width: 75em) {
+  .btn {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 62.5em) {
+  .btn {
+    margin-top: 3rem;
+    font-size: 2.2rem;
+    padding: 2rem 3rem;
+  }
 }
 
 @media only screen and (max-width: 50em) {
@@ -373,15 +465,15 @@ a:visited {
   opacity: .5;
   -webkit-filter: blur(30px);
           filter: blur(30px);
-  -webkit-transform: translateX(-130px) skewX(-15deg);
-          transform: translateX(-130px) skewX(-15deg);
+  -webkit-transform: translateX(-300px) skewX(-15deg);
+          transform: translateX(-300px) skewX(-15deg);
 }
 
 .btn::after {
   content: '';
   display: block;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
   width: 30px;
   height: 100%;
   left: 30px;
@@ -389,8 +481,8 @@ a:visited {
   opacity: 0;
   -webkit-filter: blur(30px);
           filter: blur(30px);
-  -webkit-transform: translateX(-100px) scaleX(-15deg);
-          transform: translateX(-100px) scaleX(-15deg);
+  -webkit-transform: translateX(-300px) scaleX(-15deg);
+          transform: translateX(-300px) scaleX(-15deg);
 }
 
 .btn:hover {
@@ -399,19 +491,25 @@ a:visited {
 }
 
 .btn:hover::before {
-  -webkit-transform: translateX(300px) skewX(-15deg);
-          transform: translateX(300px) skewX(-15deg);
+  -webkit-transform: translateX(200px) skewX(-15deg);
+          transform: translateX(200px) skewX(-15deg);
   opacity: .6;
-  -webkit-transition: .7s;
-  transition: .7s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .btn:hover::after {
-  -webkit-transform: translateX(300px) skewX(-15deg);
-          transform: translateX(300px) skewX(-15deg);
+  -webkit-transform: translateX(250px) skewX(-15deg);
+          transform: translateX(250px) skewX(-15deg);
   opacity: 1;
-  -webkit-transition: .7s;
-  transition: .7s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+@media only screen and (max-width: 30em) {
+  #new {
+    display: none;
+  }
 }
 
 .game {
