@@ -22,7 +22,7 @@ function card(x, y) {
         cards[i].classList.remove('none');
         whos[i].innerHTML = card_display[i].who.substring(0, card_display[i].who.length - 2);
 
-        var set_img = "imgs[i].src = '/img/" + whos[i].innerHTML + "-c.png'";
+        var set_img = "imgs[i].src = 'img/" + whos[i].innerHTML + "-c.png'";
         eval(set_img);
 
         wheres[i].classList.remove('danger');
